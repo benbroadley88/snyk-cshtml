@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@{ 
+    if (Request.QueryString["ReturnUrl"] != null)
+    {
+        this.MethodWithOpenRedirect();
+    }
+}
+
+<main>
+    <div class="row">
+        <form method="POST" action="./Index?ReturnUrl=https%3A%2F%2Fsnyk.io">
+            <input type="submit" />
+        </form>
+    </div>
+</main>
+
+@functions {
+    void MethodWithOpenRedirect()
+    {
+        var queryStringUrl = Request.QueryString["ReturnUrl"];
+
+        Response.Redirect(queryStringUrl);
+    }
+}
